@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Rau Câu Shop</title>
+  <link rel="icon" href="images/Gengar.png" type="image/png">
+  <link rel="shortcut icon" href="images/Gengar.png" type="image/png">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Rau Câu Shop <img src="images/Gengar.png" alt="Gengar Logo" class="header-logo"></h1>
+    <div class="cart-btn">Cart (<span id="cart-count">0</span>)</div>
+  </header>
+
+  <main>
+    <section class="sidebar">
+      <div id="filters" class="filters"></div>
+    </section>
+    
+    <section id="products" class="grid"></section>
+
+    <aside id="cart" class="panel hidden">
+      <h2>Your Cart</h2>
+      
+      <ul id="cart-items"></ul>
+      
+      <div class="cart-total">Total: <span id="cart-total">0</span> VND</div>
+
+      <form id="checkout-form">
+        <h3>Checkout</h3>
+        
+        <label>Full name<br /><input name="name" required /></label>
+        
+        <label>Phone<br /><input name="phone" required /></label>
+        
+        <label>Address<br /><textarea name="address" rows="3" required></textarea></label>
+        
+        <button type="submit">Place Order</button>
+      </form>
+
+      <button id="close-cart">Close</button>
+    </aside>
+  </main>
+
+  <footer>
+    <small> Rau Câu Shop — demo</small>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

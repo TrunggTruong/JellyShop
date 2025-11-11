@@ -1,0 +1,566 @@
+/* ==========================================================================
+   WEBSITE THEME COLORS
+   ========================================================================== */
+
+:root {
+    /* 
+    Gengar-inspired theme colors
+    
+    Usage:
+    background: var(--color-name);
+    color: var(--color-name);
+    border-color: var(--color-name);
+    */
+    
+    /* Primary accent color for buttons and highlights */
+    --accent: #9B59FF;
+    
+    /* Main background color */
+    --bg: #1a0826;
+    
+    /* Surface color for cards and sidebars */
+    --surface: #2a0f3f;
+    
+    /* Primary text color */
+    --text: #f7efff;
+    
+    /* Secondary text color for less important content */
+    --muted: #e0d6fb;
+    
+    /* Subtle border color */
+    --border: rgba(255,255,255,0.08);
+}
+
+/* ==========================================================================
+   BASIC SETUP
+   ========================================================================== */
+
+/*
+  Set box-sizing for easier size calculations
+  
+  Example: When setting width: 100px on an element:
+  - Default: width = content only
+  - With border-box: width = content + padding + border
+*/
+* {
+    box-sizing: border-box
+}
+
+/*
+  Basic settings for the whole website:
+  
+  1. Font stack: Inter as primary, with system fallbacks
+  2. Background color using --bg variable
+  3. Text color using --text variable
+  4. Remove default body margin
+  5. Set comfortable line height for readability
+*/
+body {
+ 
+    font-family: Inter, system-ui, Segoe UI, Arial;
+    background: var(--bg);
+    margin: 0;
+    color: var(--text);
+    line-height: 1.4
+}
+
+/* ==========================================================================
+   HEADER BAR
+   ========================================================================== */
+
+/*
+  Header bar at the top of the page
+  
+  1. Uses flexbox for logo and cart button alignment
+  2. Stays fixed at top when scrolling
+  3. Elevated with shadow
+  4. Full-width container
+*/
+header {
+    /* Horizontal layout with flexbox */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    /* Basic spacing */
+    padding: 1rem;
+    
+    /* Visual styling */
+    background: var(--surface);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .6);
+    
+    /* Sticky positioning */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    
+    /* Prevent content overflow */
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box
+}
+
+/*
+  Header title with logo and text
+  
+  - Uses flexbox to combine logo and text
+  - Auto-truncates overflowing text
+*/
+header h1 {
+    /* Text sizing */
+    font-size: 1.25rem;
+    margin: 0;
+    
+    /* Logo and text layout */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+    /* Handle overflow */
+    min-width: 0;
+    flex: 1 1 auto;
+    overflow: hidden
+}
+
+header h1 img {
+    flex-shrink: 0
+}
+
+/*
+  Website logo
+  
+  - Fixed size 24x24px
+  - Important flags to ensure consistent sizing
+*/
+.header-logo {
+    /* Fixed dimensions */
+    height: 24px !important;
+    width: 24px !important;
+    max-height: 24px !important;
+    max-width: 24px !important;
+    
+    /* Image display */
+    vertical-align: middle;
+    object-fit: contain;
+    display: inline-block
+}
+
+/*
+  Shopping cart button
+  
+  - Uses accent color for emphasis
+  - Cursor indicates clickability
+  - Prevents shrinking on small screens
+*/
+.cart-btn {
+    /* Interactive cursor */
+    cursor: pointer;
+    
+    /* Spacing and corners */
+    padding: .5rem 1rem;
+    border-radius: 8px;
+    
+    /* Colors */
+    background: var(--accent);
+    color: #fff;
+    
+    /* Prevent shrinking */
+    flex-shrink: 0;
+    white-space: nowrap
+}
+
+/* ==========================================================================
+   MAIN LAYOUT
+   ========================================================================== */
+
+/*
+  Two-column layout: sidebar + main content
+  
+  - Uses CSS Grid for layout division
+  - Fixed 240px sidebar, fluid content area
+  - Maximum width for optimal readability
+*/
+main {
+    /* Two-column grid layout */
+    display: grid;
+    /* Column 1: 240px (sidebar), Column 2: remaining space */
+    grid-template-columns: 240px 1fr;
+    /* Gap between columns */
+    gap: 1rem;
+    
+    /* Khoảng đệm và căn giữa */
+    padding: 1.5rem;
+    max-width: 1100px;
+    margin: 1rem auto;
+    /* Chiều rộng = 100% - 2rem khoảng đệm */
+    width: calc(100% - 2rem)
+}
+
+/*
+  Sidebar containing filters
+  
+  - Dark background with shadow for separation
+  - Rounded corners for visual appeal
+*/
+.sidebar {
+    /* Background and shadow */
+    background: var(--surface);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .6);
+    
+    /* Corners and padding */
+    border-radius: 12px;
+    padding: 1rem
+}
+
+/* ==========================================================================
+   FILTERS AND FORMS
+   ========================================================================== */
+
+/*
+  Filter controls (input, select, button)
+  
+  - Full width for better visibility
+  - Semi-transparent background for dark theme
+  - Borders and radius for visual definition
+*/
+.filters input,
+.filters select,
+.filters button {
+    /* Chiều rộng đầy đủ */
+    width: 100%;
+    
+    /* Khoảng đệm và margin */
+    padding: .5rem;
+    margin: .25rem 0;
+    
+    /* Bo góc và viền */
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    
+    /* Màu nền và chữ */
+    background: rgba(255,255,255,0.02);
+    color: var(--text);
+}
+
+/* ==========================================================================
+   PRODUCT GRID
+   ========================================================================== */
+
+/*
+  Product display grid
+  
+  - Uses CSS Grid with auto columns
+  - Each product minimum width 220px
+  - Automatically adds columns when space allows
+*/
+.grid {
+    /* Grid layout */
+    display: grid;
+    /* Auto columns with minimum width */
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    /* Spacing between items */
+    gap: 1rem
+}
+
+/* ==========================================================================
+   PRODUCT CARD
+   ========================================================================== */
+
+/*
+  Product information card
+  
+  - Uses Flexbox for vertical content layout
+  - Elevated with shadow and rounded corners
+  - "Add to Cart" button always at bottom
+*/
+.card {
+    /* Background and elevation */
+    background: var(--surface);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .6);
+    
+    /* Shape and spacing */
+    border-radius: 12px;
+    padding: 1rem;
+    
+    /* Vertical content layout */
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    
+    /* Consistent height */
+    min-height: 260px
+}
+
+/*
+  Product image
+  
+  - Fixed height of 140px
+  - Auto-scaled within container
+  - Subtle border for separation
+*/
+.card img {
+    /* Dimensions */
+    width: 100%;
+    height: 140px;
+    
+    /* Image fit */
+    object-fit: cover;
+    
+    /* Shape and border */
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.04)
+}
+
+/*
+  Product name
+*/
+.card h3 {
+    margin: .25rem 0;
+    font-size: 1.05rem
+}
+
+/*
+  Product price
+  
+  - Purple accent for emphasis
+  - Bold weight for visibility
+*/
+.card .price {
+    font-weight: 700;
+    color: var(--accent)
+}
+
+/*
+  Product category
+  
+  - Smaller, muted text
+*/
+.card .cat {
+    font-size: .85rem;
+    color: var(--muted)
+}
+
+/*
+  Add to cart button
+  
+  - Positioned at bottom of card
+  - Accent color for visibility
+  - Pointer cursor for interactivity
+*/
+.card button {
+    /* Position at bottom */
+    margin-top: auto;
+    
+    /* Shape and spacing */
+    padding: .5rem;
+    border-radius: 8px;
+    
+    /* Colors and border */
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    
+    /* Interactive cursor */
+    cursor: pointer
+}
+
+/* ==========================================================================
+   SHOPPING CART
+   ========================================================================== */
+
+/*
+  Floating cart panel
+  
+  - Fixed position on right side
+  - Scrollable for many items
+  - Strong shadow for elevation
+*/
+.panel {
+    /* Fixed width */
+    width: 320px;
+    
+    /* Background and shadow */
+    background: var(--surface);
+    box-shadow: 0 8px 40px rgba(0,0,0,.7);
+    
+    /* Shape and spacing */
+    border-radius: 12px;
+    padding: 1rem;
+    
+    /* Fixed positioning */
+    position: fixed;
+    right: 20px;
+    top: 80px
+}
+
+/*
+  Utility class to hide elements
+*/
+.hidden {
+    display: none
+}
+
+/*
+  Cart items list
+  
+  - Scrollable overflow
+  - Maximum height 40% of viewport
+*/
+#cart-items {
+    /* Remove default list styling */
+    list-style: none;
+    
+    /* Remove default spacing */
+    padding: 0;
+    margin: 0;
+    
+    /* Enable scrolling when needed */
+    max-height: 40vh;
+    overflow: auto
+}
+
+/*
+  Each cart item
+  
+  - Name on left, price on right
+  - Dividing line between items
+*/
+#cart-items li {
+    /* Content layout */
+    display: flex;
+    justify-content: space-between;
+    
+    /* Spacing and separator */
+    padding: .5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04)
+}
+
+/*
+  Cart total amount
+*/
+.cart-total {
+    font-weight: 700;
+    margin-top: .5rem
+}
+
+/* ==========================================================================
+   FOOTER AND CONTROLS
+   ========================================================================== */
+
+/*
+  Website footer
+  
+  - Centered content
+  - Muted text for distinction
+*/
+footer {
+    text-align: center;
+    padding: 1rem;
+    color: var(--muted)
+}
+
+/*
+  Form labels
+  
+  - Block display for line breaks
+  - Consistent vertical spacing
+*/
+label {
+    display: block;
+    margin: .5rem 0
+}
+
+/*
+  Form controls
+  
+  - Inherit page font
+  - Maintain consistent sizing
+*/
+input,
+textarea,
+button,
+select {
+    font: inherit
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
+
+/* 
+  Adjustments for small screens (below 900px)
+*/
+@media(max-width:900px) {
+    /*
+      Main layout
+      
+      - Single column layout
+      - Reduced padding
+    */
+    main {
+        grid-template-columns: 1fr;
+        padding: 1rem
+    }
+
+    /*
+      Cart panel
+      
+      - Auto width
+      - Fixed to bottom of screen
+      - Scrollable for overflow
+    */
+    .panel {
+        position: fixed;
+        right: 10px;
+        left: 10px;
+        top: auto;
+        bottom: 10px;
+        width: auto;
+        max-height: 60vh;
+        overflow: auto
+    }
+
+    /*
+      Header bar
+      
+      - Reduced padding to save space
+    */
+    header {
+        padding: 0.75rem
+    }
+
+    /*
+      Header title
+      
+      - Smaller font size
+      - Reduced logo spacing
+    */
+    header h1 {
+        font-size: 0.9rem;
+        gap: 0.3rem
+    }
+
+    /*
+      Header logo
+      
+      - Reduced to 18x18px
+      - Important flags for size enforcement
+    */
+    .header-logo {
+        height: 18px !important;
+        width: 18px !important;
+        max-height: 18px !important;
+        max-width: 18px !important
+    }
+
+    /*
+      Cart button
+      
+      - Smaller padding and font
+      - Maintains colors and radius
+    */
+    .cart-btn {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.9rem
+    }
+}
