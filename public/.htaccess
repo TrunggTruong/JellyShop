@@ -1,0 +1,18 @@
+RewriteEngine On
+
+# Serve static files (assets) directly
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^(.*)$ $1 [L]
+
+# Route admin requests to router (even if admin directory exists)
+RewriteRule ^admin(/.*)?$ router.php [QSA,L]
+
+# Route API requests to router
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/(.*)$ router.php [QSA,L]
+
+# Default to index.php for root
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^$ index.php [L]
