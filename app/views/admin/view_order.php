@@ -103,4 +103,4 @@
       </form>
     <?php } ?>
 
-    <a href="index#orders-section" class="back-link">← Back to View Orders</a>
+    <a href="orders" class="back-link">← Back to View Orders</a>
