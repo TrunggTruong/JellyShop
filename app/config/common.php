@@ -1,6 +1,6 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+    session_start(); 
 }
 // Common utility functions for admin panel - shared across admin pages
 
