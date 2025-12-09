@@ -6,11 +6,11 @@
     <a href="index" class="btn btn-secondary">← Back to Dashboard</a>
 </div>
 
-<?php if ($flashMessage): ?>
-            <div class="flash-message <?= htmlspecialchars($flashType ?? '') ?>">
-                <?= htmlspecialchars($flashMessage) ?>
-            </div>
-        <?php endif; ?>
+<?php if (!empty($GLOBALS['flashMessage'] ?? '')): ?>
+    <div class="admin-flash <?= htmlspecialchars($GLOBALS['flashType'] ?? '') ?>" role="alert">
+        <?= htmlspecialchars($GLOBALS['flashMessage']) ?>
+    </div>
+<?php endif; ?>
 
         <div class="metrics-grid">
             <div class="metric-card primary">
