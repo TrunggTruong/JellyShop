@@ -11,8 +11,17 @@ if ($id > 0) {
     $db = db_connect();
     $stmt = $db->prepare('UPDATE orders SET shipped=1 WHERE id=?');
     $stmt->bind_param('i', $id);
-    $stmt->execute();
+    if ($stmt->execute() && $stmt->affected_rows > 0) {
+        $_SESSION['flash_message'] = 'Order marked as shipped.';
+        $_SESSION['flash_type'] = 'success';
+    } else {
+        $_SESSION['flash_message'] = 'Failed to mark order as shipped.';
+        $_SESSION['flash_type'] = 'error';
+    }
     $stmt->close();
+} else {
+    $_SESSION['flash_message'] = 'Invalid order.';
+    $_SESSION['flash_type'] = 'error';
 }
 
 header('Location: view_order?id=' . $id);
