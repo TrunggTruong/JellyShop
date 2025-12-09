@@ -12,9 +12,10 @@ migrate_orders_columns($db);
 
 process_customer_admin_action($db, 'customers');
 
-$flashMessage = $_SESSION['customer_flash'] ?? null;
-$flashType = $_SESSION['customer_flash_type'] ?? null;
-unset($_SESSION['customer_flash'], $_SESSION['customer_flash_type']);
+// Get flash message from session (set by process_customer_admin_action)
+$GLOBALS['flashMessage'] = $_SESSION['flash_message'] ?? '';
+$GLOBALS['flashType'] = $_SESSION['flash_type'] ?? '';
+unset($_SESSION['flash_message'], $_SESSION['flash_type']);
 
 $accountStats = [
     'total_accounts' => 0,
