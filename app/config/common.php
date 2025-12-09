@@ -1,6 +1,6 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
-    session_start(); 
+    session_start();
 }
 // Common utility functions for admin panel - shared across admin pages
 
@@ -267,5 +267,36 @@ function process_customer_admin_action($db, $defaultRedirect = 'customers.php') 
     
     header('Location: ' . $redirect);
     exit;
+}
+
+// Handle product image upload
+function upload_product_image() {
+    if (!isset($_FILES['image']) || $_FILES['image']['error'] !== 0) {
+        return '';
+    }
+    
+    $ext = pathinfo($_FILES['image']['name'], PATHINFO_EXTENSION);
+    $fn = 'product_' . time() . rand(100, 999) . '.' . $ext;
+    
+    // Get image directory from controller location (admin/add_product.php or admin/edit_product.php)
+    $imageDir = realpath(__DIR__ . '/../../public/assets/images');
+    
+    // Ensure directory exists
+    if (!$imageDir || !is_dir($imageDir)) {
+        $imageDir = __DIR__ . '/../../public/assets/images';
+        if (!is_dir($imageDir)) {
+            mkdir($imageDir, 0755, true);
+        }
+        $imageDir = realpath($imageDir);
+    }
+    
+    $destFile = $imageDir . DIRECTORY_SEPARATOR . $fn;
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $destFile)) {
+        $thumb_fn = 'thumb_' . time() . rand(100, 999) . '.' . $ext;
+        create_thumbnail($destFile, $imageDir . DIRECTORY_SEPARATOR . $thumb_fn);
+        return 'assets/images/' . $fn;
+    }
+    
+    return '';
 }
 
