@@ -1,17 +1,15 @@
 <?php
-// Create admin account view - content only (layout handles HTML wrapper, data prepared by controller)
-$message = $_SESSION['admin_message'] ?? '';
-$messageType = $_SESSION['admin_message_type'] ?? '';
-unset($_SESSION['admin_message'], $_SESSION['admin_message_type']);
+// Create admin account view - content only (layout handles HTML wrapper)
+// Note: this view is shown for login page, so it has its own styling
 ?>
 <!-- Main login form container for create admin -->
 <div class="login-container">
     <div class="login-box">
         <h1>Create Admin User</h1>
 
-        <?php if ($message): ?>
-            <div class="<?php echo htmlspecialchars($messageType); ?>">
-                <?php echo htmlspecialchars($message); ?>
+        <?php if (!empty($GLOBALS['flashMessage'] ?? '')): ?>
+            <div class="<?php echo htmlspecialchars($GLOBALS['flashType'] ?? 'error'); ?>">
+                <?php echo htmlspecialchars($GLOBALS['flashMessage']); ?>
             </div>
         <?php endif; ?>
 
