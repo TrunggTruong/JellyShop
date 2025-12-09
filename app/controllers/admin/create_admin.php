@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../../config/config.php';
 require_once __DIR__ . '/../../config/common.php';
 
-require_admin();
+// Note: This page is public for initial admin setup - no require_admin() check
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');
@@ -12,6 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($username === '' || $password === '') {
         $_SESSION['admin_message'] = 'Please provide both username and password.';
         $_SESSION['admin_message_type'] = 'error';
+        $_SESSION['flash_message'] = 'Please provide both username and password.';
+        $_SESSION['flash_type'] = 'error';
         header('Location: create_admin');
         exit;
     }
@@ -20,6 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!$db) {
         $_SESSION['admin_message'] = 'Database connection failed.';
         $_SESSION['admin_message_type'] = 'error';
+        $_SESSION['flash_message'] = 'Database connection failed.';
+        $_SESSION['flash_type'] = 'error';
         header('Location: create_admin');
         exit;
     }
@@ -33,14 +37,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($stmt->execute()) {
             $_SESSION['admin_message'] = "Admin user '$username' created successfully.";
             $_SESSION['admin_message_type'] = 'success';
+            $_SESSION['flash_message'] = "Admin user '$username' created successfully.";
+            $_SESSION['flash_type'] = 'success';
         } else {
             $_SESSION['admin_message'] = 'Failed to create admin. Username may already exist.';
             $_SESSION['admin_message_type'] = 'error';
+            $_SESSION['flash_message'] = 'Failed to create admin. Username may already exist.';
+            $_SESSION['flash_type'] = 'error';
         }
         $stmt->close();
     } else {
         $_SESSION['admin_message'] = 'Database error.';
         $_SESSION['admin_message_type'] = 'error';
+        $_SESSION['flash_message'] = 'Database error.';
+        $_SESSION['flash_type'] = 'error';
     }
     
     header('Location: create_admin');
@@ -51,4 +61,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $admin_view = 'create_admin';
 $admin_page_title = 'Create Admin User';
 require_once __DIR__ . '/../../views/admin/layout.php';
-

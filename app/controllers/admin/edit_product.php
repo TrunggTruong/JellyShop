@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       $_SESSION['flash_type'] = 'error';
     }
 
-    header('Location: index#products-section');
+    header('Location: products');
     exit;
 }
 

@@ -57,6 +57,5 @@ if ($id > 0) {
     }
 }
 
-header('Location: index#products-section');
+header('Location: products');
 exit;
-

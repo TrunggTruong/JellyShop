@@ -31,14 +31,11 @@ $GLOBALS['flashType'] = $flashType;
     <link rel="stylesheet" href="../admin/assets/css/admin.css">
 </head>
 <body>
-    <!-- Admin Header Navigation (except for login page) -->
-    <?php if ($admin_view !== 'login'): ?>
+    <!-- Admin Header Navigation (except for login/create_admin pages) -->
+    <?php if ($admin_view !== 'login' && $admin_view !== 'create_admin'): ?>
         <header class="admin-header">
             <h1>Jelly Gengar - Admin <img src="../assets/images/Gengar.png" alt="Gengar Logo" class="header-logo"></h1>
             <nav class="admin-nav">
-                <a href="index" <?= $admin_view === 'index' ? 'class="active"' : '' ?>>Dashboard</a>
-                <a href="customers" <?= $admin_view === 'customers' ? 'class="active"' : '' ?>>Accounts</a>
-                <a href="revenue" <?= $admin_view === 'revenue' ? 'class="active"' : '' ?>>Revenue</a>
                 <a href="logout" class="logout">Logout</a>
             </nav>
         </header>
@@ -55,8 +52,8 @@ $GLOBALS['flashType'] = $flashType;
     }
     ?>
 
-    <!-- Close admin container (if not login) -->
-    <?php if ($admin_view !== 'login'): ?>
+    <!-- Close admin container (if not login/create_admin) -->
+    <?php if ($admin_view !== 'login' && $admin_view !== 'create_admin'): ?>
         </div>
     <?php endif; ?>
 

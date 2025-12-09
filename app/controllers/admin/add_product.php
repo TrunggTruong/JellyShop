@@ -55,11 +55,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['flash_type'] = 'error';
     }
 
-    header('Location: index#products-section');
+    header('Location: products');
     exit;
 }
 
-// If not POST, show form (inline in index.php, so redirect to index)
-header('Location: index#add-product-section');
+// If not POST, redirect to add product form page
+header('Location: add_product_form');
 exit;
 
