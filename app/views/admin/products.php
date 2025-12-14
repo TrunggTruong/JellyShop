@@ -32,7 +32,7 @@
         <?php while($r = $products_res->fetch_assoc()): ?>
           <tr>
             <td><?= $r['id'] ?></td>
-            <td><?php if($r['image']) echo '<img src="/raucau/public/'.htmlspecialchars($r['image']).'" width="80" height="80" class="img-cover">'; else echo '-'; ?></td>
+            <td><?php if($r['image']) echo '<img src="'.ASSET_PATH.'/'.htmlspecialchars($r['image']).'" width="80" height="80" class="img-cover">'; else echo '-'; ?></td>
             <td><?= htmlspecialchars($r['name']) ?></td>
             <td><?= htmlspecialchars($r['category']) ?></td>
             <td><?= number_format($r['price']) ?> VND</td>
