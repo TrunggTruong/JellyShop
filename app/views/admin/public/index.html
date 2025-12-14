@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<!-- This is the main page of our Rau Câu Shop website -->
+<html lang="en">
+<head>
+    <!-- Basic page setup -->
+    <meta charset="utf-8" />
+    <!-- Make the page work well on mobile phones -->
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Jelly Gengar</title>
+    
+    <!-- Website icon (shows in browser tab) -->
+    <link rel="icon" href="assets/images/Gengar.png" type="image/png">
+    <link rel="shortcut icon" href="assets/images/Gengar.png" type="image/png">
+    
+    <!-- Link to our CSS file for styling -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+    <!-- Top bar of the website -->
+    <header>
+        <!-- Website name and logo -->
+        <h1>Jelly Gengar <img src="assets/images/Gengar.png" alt="Gengar Logo" class="header-logo"></h1>
+        
+        <!-- Search and category filter in header -->
+        <div class="header-search">
+            <input 
+                id="search" 
+                placeholder="Search products..."
+                title="Enter product name to search"
+                class="header-search-input"
+            />
+            <select 
+                id="category-select"
+                title="Select product category"
+                class="header-category-select"
+            >
+                <option value="">All Categories</option>
+            </select>
+            <button 
+                id="search-btn"
+                title="Click to search"
+                class="header-search-btn"
+            >
+                Search
+            </button>
+        </div>
+        
+        <div class="header-actions">
+            <!-- Shopping cart button -->
+            <div class="cart-btn">Cart (<span id="cart-count">0</span>)</div>
+            
+            <!-- Auth controls -->
+            <div class="auth-controls">
+                <button id="login-trigger" class="auth-btn primary-pill">Login</button>
+                <button id="register-trigger" class="auth-btn secondary">Create Account</button>
+                <div id="user-menu" class="user-menu hidden">
+                    <div class="user-info">
+                        <span id="user-name"></span>
+                        <small id="user-email"></small>
+                    </div>
+                    <div class="user-actions">
+                        <button id="open-customer-portal" class="auth-btn ghost">Customer Portal</button>
+                        <button id="logout-btn" class="auth-btn ghost danger">Logout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Notification container -->
+    <div id="notification" class="notification hidden"></div>
+
+    <!-- Main content area -->
+    <main>
+
+        <section id="products-container"></section>
+
+        <!-- Shopping cart panel (hidden by default) -->
+        <aside id="cart" class="panel hidden">
+            <h2>Your Cart</h2>
+            
+            <!-- Confirmation step (shown first) -->
+            <div id="cart-confirmation" class="cart-step">
+                <!-- List of items in cart -->
+                <ul id="cart-items"></ul>
+                
+                <!-- Total price -->
+                <div class="cart-total">Total: <span id="cart-total">0</span> VND</div>
+                
+                <!-- Confirm button -->
+                <button id="confirm-cart" class="cart-confirm-btn">Confirm Cart</button>
+            </div>
+
+            <!-- Checkout form (hidden initially) -->
+            <form id="checkout-form" class="cart-step hidden">
+                <h3>Order Information</h3>
+                
+                <!-- Customer details -->
+                <label>
+                    Full Name<br />
+                    <input name="name" required />
+                </label>
+                
+                <label>
+                    Phone Number<br />
+                    <input name="phone" required />
+                </label>
+                
+                <label>
+                    Delivery Address<br />
+                    <textarea name="address" rows="3" required></textarea>
+                </label>
+                
+                <!-- Order submission button -->
+                <button type="submit" class="cart-order-btn">Place Order</button>
+                
+                <!-- Back button -->
+                <button type="button" id="back-to-cart" class="cart-back-btn">← Back to Cart</button>
+            </form>
+
+            <!-- Close cart button -->
+            <button id="close-cart" class="cart-close-btn">Close</button>
+        </aside>
+    </main>
+
+    <!-- Authentication modals -->
+    <div id="login-modal" class="auth-modal hidden" role="dialog" aria-modal="true" aria-labelledby="login-modal-title">
+        <div class="auth-modal-panel">
+            <button class="auth-modal-close" id="login-close-btn" aria-label="Close form">×</button>
+            <h2 id="login-modal-title">Login</h2>
+            <p class="auth-subtext">Enter your email and password to continue shopping.</p>
+            <form id="login-form" class="auth-form">
+                <label>
+                    Email
+                    <input type="email" name="email" id="login-email" required autocomplete="email">
+                </label>
+                <label>
+                    Password
+                    <input type="password" name="password" id="login-password" required autocomplete="current-password">
+                </label>
+                <button type="submit" class="auth-submit-btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="register-modal" class="auth-modal hidden" role="dialog" aria-modal="true" aria-labelledby="register-modal-title">
+        <div class="auth-modal-panel">
+            <button class="auth-modal-close" id="register-close-btn" aria-label="Close form">×</button>
+            <h2 id="register-modal-title">Create Account</h2>
+            <p class="auth-subtext">Create an account to track orders and save information.</p>
+            <form id="register-form" class="auth-form">
+                <div id="register-error" class="auth-error hidden" role="alert"></div>
+                <label>
+                    Full Name
+                    <input type="text" name="full_name" id="register-name" required autocomplete="name">
+                </label>
+                <label>
+                    Email
+                    <input type="email" name="email" id="register-email" required autocomplete="email">
+                </label>
+                <label>
+                    Password
+                    <input type="password" name="password" id="register-password" required autocomplete="new-password">
+                </label>
+                <label>
+                    Confirm Password
+                    <input type="password" name="confirm_password" id="register-confirm-password" required autocomplete="new-password">
+                </label>
+                <button type="submit" class="auth-submit-btn">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Customer portal modal -->
+    <div id="customer-portal" class="portal-modal hidden" role="dialog" aria-modal="true" aria-labelledby="portal-title">
+        <div class="portal-panel">
+            <button id="portal-close-btn" class="portal-close" aria-label="Close">×</button>
+            <div class="portal-header">
+                <div>
+                    <p class="eyebrow">Account</p>
+                    <h2 id="portal-title">Account Information & Orders</h2>
+                </div>
+                <div class="portal-tabs">
+                    <button class="portal-tab active" data-portal-tab="profile">Profile</button>
+                    <button class="portal-tab" data-portal-tab="orders">Order History</button>
+                </div>
+            </div>
+            <div class="portal-body">
+                <section id="portal-profile" class="portal-pane active">
+                    <div class="profile-info">
+                        <div class="profile-field">
+                            <label>Full Name</label>
+                            <p id="profile-full-name">-</p>
+                        </div>
+                        <div class="profile-field">
+                            <label>Email</label>
+                            <p id="profile-email">-</p>
+                        </div>
+                    </div>
+                </section>
+                <section id="portal-orders" class="portal-pane">
+                    <div class="orders-empty hidden" id="orders-empty">
+                        <p>You have no orders yet. Place your first order today!</p>
+                    </div>
+                    <ul id="orders-list" class="orders-list"></ul>
+                </section>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Page footer -->
+    <footer>
+        <small>Jelly Gengar shop</small>
+    </footer>
+
+    <!-- Link to our JavaScript file -->
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
