@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['login_error'] = 'Database error.';
     }
     
-    header('Location: /raucau/public/admin/login');
+    header('Location: /JellyShop/public/admin/login');
     exit;
 }
 
