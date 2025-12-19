@@ -4,10 +4,15 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 // Common utility functions for admin panel - shared across admin pages
 
+// Define asset path for accessing public assets
+if (!defined('ASSET_PATH')) {
+    define('ASSET_PATH', '/JellyShop/public');
+}
+
 // Redirect to login if admin is not authenticated
 function require_admin() {
     if (!isset($_SESSION['admin'])) {
-        header('Location: /raucau/public/admin/login');
+        header('Location: /JellyShop/public/admin/login');
         exit;
     }
 }

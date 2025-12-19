@@ -17,8 +17,8 @@ if ($basePath !== '/' && $basePath !== '\\') {
 // Remove leading slash
 $path = ltrim($path, '/');
 
-// Normalize path: remove 'raucau' and 'public' prefixes if present
-// This handles cases where root .htaccess redirects /raucau/admin/ to /raucau/public/admin/
+// Normalize path: remove 'JellyShop' and 'public' prefixes if present
+// This handles cases where root .htaccess redirects /JellyShop/admin/ to /JellyShop/public/admin/
 $pathParts = explode('/', $path);
 $filteredParts = [];
 $skipNext = false;
@@ -27,7 +27,7 @@ foreach ($pathParts as $i => $part) {
         $skipNext = false;
         continue;
     }
-    if ($part === 'raucau' || $part === 'public') {
+    if ($part === 'JellyShop' || $part === 'public') {
         // Skip these parts
         continue;
     }
@@ -49,7 +49,7 @@ if (isset($segments[0]) && $segments[0] === 'admin') {
     $adminControllers = [
         'logout', 'delete_product', 'add_product', 'edit_product',
         'mark_order_shipped', 'cancel_order', 'login', 'create_admin',
-        'customers', 'customer', 'revenue', 'view_order', 'index'
+        'customers', 'customer', 'revenue', 'view_order', 'index', 'products', 'orders'
     ];
     
     // Views (display pages - only login/create_admin for standalone views)
@@ -59,14 +59,14 @@ if (isset($segments[0]) && $segments[0] === 'admin') {
     
     // Special case: controllers that render views via layout
     $adminControllerViews = [
-        'customers', 'customer', 'revenue', 'view_order', 'login', 'create_admin', 'index'
+        'customers', 'customer', 'revenue', 'view_order', 'login', 'create_admin', 'index', 'products', 'orders'
     ];
     
     // If POST request, try controller first
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && in_array($adminFile, $adminControllers)) {
         $controllerPath = __DIR__ . '/../app/controllers/admin/' . $adminFile . '.php';
         if (file_exists($controllerPath)) {
-            $_SERVER['SCRIPT_NAME'] = '/raucau/public/admin/' . $adminFile;
+            $_SERVER['SCRIPT_NAME'] = '/JellyShop/public/admin/' . $adminFile;
             require_once $controllerPath;
             exit;
         }
@@ -76,7 +76,7 @@ if (isset($segments[0]) && $segments[0] === 'admin') {
     if (in_array($adminFile, $adminControllers) && !in_array($adminFile, $adminControllerViews)) {
         $controllerPath = __DIR__ . '/../app/controllers/admin/' . $adminFile . '.php';
         if (file_exists($controllerPath)) {
-            $_SERVER['SCRIPT_NAME'] = '/raucau/public/admin/' . $adminFile;
+            $_SERVER['SCRIPT_NAME'] = '/JellyShop/public/admin/' . $adminFile;
             require_once $controllerPath;
             exit;
         }
@@ -86,7 +86,7 @@ if (isset($segments[0]) && $segments[0] === 'admin') {
     if (in_array($adminFile, $adminControllerViews)) {
         $controllerPath = __DIR__ . '/../app/controllers/admin/' . $adminFile . '.php';
         if (file_exists($controllerPath)) {
-            $_SERVER['SCRIPT_NAME'] = '/raucau/public/admin/' . $adminFile;
+            $_SERVER['SCRIPT_NAME'] = '/JellyShop/public/admin/' . $adminFile;
             require_once $controllerPath;
             exit;
         }
@@ -96,7 +96,7 @@ if (isset($segments[0]) && $segments[0] === 'admin') {
     if (in_array($adminFile, $adminViews)) {
         $viewPath = __DIR__ . '/../app/views/admin/' . $adminFile . '.php';
         if (file_exists($viewPath)) {
-            $_SERVER['SCRIPT_NAME'] = '/raucau/public/admin/' . $adminFile;
+            $_SERVER['SCRIPT_NAME'] = '/JellyShop/public/admin/' . $adminFile;
             require_once $viewPath;
             exit;
         }
@@ -121,7 +121,7 @@ if (isset($segments[0]) && $segments[0] === 'api') {
     if (in_array($apiFile, $apiFiles)) {
         $controllerPath = __DIR__ . '/../app/controllers/api/' . $apiFile . '.php';
         if (file_exists($controllerPath)) {
-            $_SERVER['SCRIPT_NAME'] = '/raucau/public/api/' . $apiFile;
+            $_SERVER['SCRIPT_NAME'] = '/JellyShop/public/api/' . $apiFile;
             require_once $controllerPath;
             exit;
         }

@@ -245,7 +245,7 @@ function db_connect(){
 <?php
     if(isset($err)) echo "<div class='error'><strong>Error:</strong> $err</div>";
     if(isset($success)) echo "<div class='success'><strong>Installation complete!</strong><br>Admin: <b>admin / admin123</b></div>
-    <p><a href='/raucau/public/'>Go to Website</a> | <a href='/raucau/public/admin/login'>Admin Panel</a></p>";
+    <p><a href='/JellyShop/public/'>Go to Website</a> | <a href='/JellyShop/public/admin/login'>Admin Panel</a></p>";
 ?>
 
 <form method="post">

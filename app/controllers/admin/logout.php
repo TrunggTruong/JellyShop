@@ -5,6 +5,6 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 session_destroy();
-header('Location: /raucau/public/admin/login');
+header('Location: /JellyShop/public/admin/login');
 exit;
 

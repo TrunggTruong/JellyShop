@@ -11,14 +11,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($username === '' || $password === '') {
         $_SESSION['login_error'] = 'Please enter both username and password.';
-        header('Location: /raucau/public/admin/login');
+        header('Location: /JellyShop/public/admin/login');
         exit;
     }
 
     $db = db_connect();
     if (!$db) {
         $_SESSION['login_error'] = 'Could not connect to database.';
-        header('Location: /raucau/public/admin/login');
+        header('Location: /JellyShop/public/admin/login');
         exit;
     }
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['admin_user'] = $username;
                 $_SESSION['admin_id'] = (int)$user['id'];
                 $stmt->close();
-                header('Location: /raucau/public/admin/index');
+                header('Location: /JellyShop/public/admin/index');
                 exit;
             } else {
                 $_SESSION['login_error'] = 'Username or password is incorrect.';
