@@ -2,12 +2,12 @@
 
 A modern e-commerce web application for selling jelly products, built with PHP and MySQL.
 
-
-Name	                    Student ID
-Lý Gia Dương	           ITITWE21068
-Phạm Minh Nguyên	        ITITWE21123   
-Trương Lê Hiếu Trung	     ITITWE21091
-
+Team Members
+| Name | Student ID |
+| :--- | :--- |
+| Lý Gia Dương | ITITWE21068 |
+| Phạm Minh Nguyên | ITITWE21123 |
+| Trương Lê Hiếu Trung | ITITWE21091 |
 
 ## 📋 Description
 
