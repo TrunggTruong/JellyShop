@@ -242,14 +242,6 @@ The application uses the following main tables:
 - **orders**: Customer order information
 - **order_items**: Individual items in each order
 
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is open source and available under the MIT License.
-
 ## 👤 Author
 
 **Gengar Team**
