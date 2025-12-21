@@ -59,7 +59,7 @@ JellyShop is a full-featured online store management system that allows administ
    ```
 
 2. **Move to XAMPP htdocs**
-   - Copy the `JellyShop` folder to `C:\xampp\htdocs\`
+   - Rename and Copy the `JellyShop` folder to `C:\xampp\htdocs\`
 
 3. **Start XAMPP**
    - Open XAMPP Control Panel
@@ -93,7 +93,7 @@ JellyShop is a full-featured online store management system that allows administ
    ```
 
 2. **Move to XAMPP htdocs**
-   - Copy the `JellyShop` folder to `C:\xampp\htdocs\`
+   - Rename and Copy the `JellyShop` folder to `C:\xampp\htdocs\`
 
 3. **Start XAMPP**
    - Start **Apache** and **MySQL** services
