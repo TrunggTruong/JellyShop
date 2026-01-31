@@ -37,8 +37,8 @@ JellyShop is a full-featured online store management system that allows administ
 
 ## 🛠️ Technologies
 
-- **Backend**: PHP 8.x
-- **Database**: MySQL/MariaDB
+- **Backend**: PHP 
+- **Database**: MySQL
 - **Frontend**: HTML, CSS, JavaScript
 - **Server**: Apache (XAMPP)
 
